@@ -61,15 +61,7 @@ gulp.task('serv2', function () {
 	});
 });
 
-gulp.task('serv3', function () {
-	connect.server({
-	  name: 'Test Instance 2',
-	  root: './',
-	  port: 8002,
-	});
-});
-
-gulp.task('rr-test',['serv1','serv2','serv3'],()=>{});
+gulp.task('rr-test',['serv1','serv2'],()=>{});
 
 
 gulp.task('default', ['bs','js','styles'], () => {
