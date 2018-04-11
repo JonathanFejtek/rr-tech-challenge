@@ -1,0 +1,369 @@
+article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary{display:block;}audio,canvas,video{display:inline-block;}audio:not([controls]){display:none;height:0;}[hidden]{display:none;}html{font-family:sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;}a:focus{outline:thin dotted;}a:active,a:hover{outline:0;}h1{font-size:2em;}abbr[title]{border-bottom:1px dotted;}b,strong{font-weight:700;}dfn{font-style:italic;}mark{background:#ff0;color:#000;}code,kbd,pre,samp{font-family:monospace, serif;font-size:1em;}pre{white-space:pre-wrap;word-wrap:break-word;}q{quotes:\201C \201D \2018 \2019;}small{font-size:80%;}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline;}sup{top:-.5em;}sub{bottom:-.25em;}img{border:0;}svg:not(:root){overflow:hidden;}fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em;}button,input,select,textarea{font-family:inherit;font-size:100%;margin:0;}button,input{line-height:normal;}button,html input[type=button],/* 1 */input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}button[disabled],input[disabled]{cursor:default;}input[type=checkbox],input[type=radio]{box-sizing:border-box;padding:0;}input[type=search]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box;}input[type=search]::-webkit-search-cancel-button,input[type=search]::-webkit-search-decoration{-webkit-appearance:none;}textarea{overflow:auto;vertical-align:top;}table{border-collapse:collapse;border-spacing:0;}body,figure{margin:0;}legend,button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0;}
+
+
+@mixin collabItem(){
+    box-shadow : 1px 1px 4px rgb(187, 187, 187);
+    padding : 6px;
+    margin : 10px 0px;
+    border : 1px solid lightgrey;
+    background-color : white;
+}
+
+@mixin collabItemHover(){
+    box-shadow : 1px 4px 10px rgb(116, 116, 116);
+    cursor : pointer;
+}
+
+@mixin blueBG(){
+    background-color : rgb(0, 86, 199);
+    color : white;
+}
+
+*{
+    margin : 0;
+    padding : 0;
+    box-sizing : border-box;
+}
+
+.wrapper{
+    min-width : 850px;
+}
+
+.page-header{
+    @include blueBG();
+    min-height : 50px;
+    display : absolute;
+    z-index : 3;
+    box-shadow : 0px 4px 7px rgb(141, 141, 141);
+    display : flex;
+    justify-content : space-between;
+    align-items : flex-start;
+    h2{
+        
+        padding : 10px;
+    }
+    h5{
+        padding : 8px;
+    }
+}
+
+.app-container{
+    display : flex;
+    position : relative;
+    background-color : transparent;
+    align-items : center;
+}
+
+.collab-space{
+    display : flex;
+    justify-content : space-between;
+    width : 90%;
+    margin : 0 auto;
+    padding : 20px;
+    position : relative;
+    height: 90vh;
+}
+
+.user-header{
+    padding : 5px;
+    text-align : center;
+    background-color : rgb(173, 173, 173);
+}
+
+.current-users{
+    display : flex;
+    flex-flow : column;
+    border: solid 1px lightgrey;
+    height : 90vh;
+    min-width : 250px;
+    overflow-y : scroll;
+}
+
+.user{
+    padding : 4px;
+    display : flex;
+    align-items : center;
+    h4{
+        padding : 5px;
+        font-size : 14px;
+        font-weight : 400;
+    }
+}
+
+.user:hover{
+    background-color : lightgrey;
+    cursor: pointer;
+}
+
+.item-container, .box, .box-creator, .item-creator{
+    @include collabItem();
+    min-width : 150px;
+}
+
+.item-container, .box{
+    button{
+        border-style : none;
+        background-color : transparent;
+        font-size : 20px;
+        position : relative;
+    }
+
+    button:hover {
+        color : rgb(144, 199, 218);
+    }
+
+    button:hover:after{
+        position : absolute;
+        content : 'Remove';
+        font-size : 10px;
+        top : -13px;
+        left : -5px;
+    }
+
+    h5{
+        padding : 4px 0px;
+    }
+}
+
+.box-creator, .item-creator{
+    border: none;
+    background: radial-gradient(white,rgb(236, 244, 253));
+    margin-bottom : 30px;
+    margin-top : 30px;
+
+    input{
+        width : 97%;
+        display : block;
+        margin : 6px 0px;
+    }
+
+    button{
+        padding : 8px;
+        margin : 10px auto; 
+        background : radial-gradient(white,rgb(248, 248, 248));
+        display : block;    
+    }
+}
+
+
+.item-container:hover, .box:hover{
+    @include collabItemHover();
+}
+
+.box-valid-over{
+    border-color : green;
+    box-shadow : 1px 2px 3px green;
+
+    .weight-display{
+        color : green;
+        text-shadow : 0px 0px 5px rgba(0, 128, 0, 0.432);
+    }
+
+}
+
+.box-list, .item-list{
+    min-width : 250px;
+    border: solid 1px lightgrey;
+    padding : 16px;
+    box-shadow : 1px 1px 8px rgb(163, 163, 163);
+    background: radial-gradient(white,rgb(225, 238, 253));
+    display : flex;
+    flex-flow : column;
+    .list-label{
+        padding-top : 20px;
+        padding-left : 2px;
+        font-size : 26px;
+        text-align : center;
+    }   
+}
+
+.box-list{
+    border-radius : 15px 0px 15px 15px;
+}
+
+.item-list{
+    border-radius : 0px 15px 15px 15px;
+}
+
+.item-list-items, .box-list-items{
+    overflow-y : scroll;
+    box-shadow : 1px 1px 2px darkgrey;
+    padding : 8px;
+    margin-bottom : 20px;
+    flex : 1;
+}
+
+.box-invalid-over{
+    border-color : red;
+    box-shadow : 1px 2px 3px red;
+    position : relative;
+
+    .weight-display{
+        color : red;
+        text-shadow : 0px 0px 5px rgba(128, 0, 0, 0.432);
+    }
+}
+
+.box-invalid-over:after{
+    color : red;
+    position : absolute;
+    background-color : white;
+    border: red 1px solid;
+    font-size : 12px;
+    content : 'This item weighs too much for this box';
+    right: 0px;
+    bottom : -20px;;
+    padding : 6px;
+    z-index : 4;
+}
+
+.boxed-item {
+    display : flex;
+    border: solid 1px lightgrey;
+    margin : 2px 0px;
+    padding : 4px;
+    display : flex;
+    justify-content : space-between;
+    align-items : center;
+
+    button{
+        width : 20px;
+        height : 20px;
+        border-style : none;
+    }
+}
+
+.boxed-items{
+    margin-top : 8px;
+    margin-bottom : 8px;
+    max-height : 100px;
+    overflow-y : scroll;
+    border : inset 1px;
+}
+
+.boxed-item-name{
+    display : flex;
+    align-items : center;
+    font-size : 12px;
+    
+    h4{
+        margin-left : 8px;
+        font-weight : 600;
+    }
+}
+
+.box-top, .item-top{
+    border-style: none none solid none;
+    border-width : 1px; 
+    border-color : lightgrey;
+    display : flex;
+    justify-content : space-between;
+    align-items : center;
+    font-size : 14px;
+    font-weight : 200;
+
+    button{
+        height : 25px;
+        width : 25px;
+    }
+}
+
+.item-packed{
+    background-color : grey;
+    box-shadow : none;
+    color : lightgrey;
+}
+
+.item-packed:hover{
+    box-shadow : none;
+    cursor  : default;
+}
+
+.item-locked{
+    background-color : rgb(219, 246, 255);
+    position : relative;
+}
+
+.chatbar-wrapper{
+    position : absolute;
+    left : 0;
+    top : 0;
+    height : 100%;
+    width : 100%;
+    display : flex;
+    flex-flow : column;
+    justify-content : flex-end;
+    pointer-events : none;
+}
+
+.conversation-container{
+    min-height : 350px;
+    display : flex;
+    flex-flow : row-reverse;
+}
+
+.chat-conversation{
+    width : 300px;
+    border: 1px solid lightgrey;
+    background-color : white;
+    margin-right : 40px;
+    display : flex;
+    flex-flow : column;
+    pointer-events : auto;
+    input{
+        height : 40px;
+    }
+}
+
+.conversation-header{
+    @include blueBG();
+    padding : 10px;
+    display : flex;
+    justify-content : space-between;
+    align-items : center;
+    button{
+        width : 30px;
+        height : 30px;
+    }
+}
+
+.conversation-text{
+    overflow-y : scroll;
+    flex : 1;
+    padding : 4px;
+}
+
+.to-message, .from-message{
+    display : flex;
+    margin : 4px;
+}
+
+.message-content{
+    border: solid 1px;
+    border-radius : 10px;
+    padding : 6px;
+    max-width : 70%;
+}
+
+.to-message{
+    text-align : left;
+    justify-content : flex-start;
+    
+
+    .message-content{
+        border-color : rgb(236, 236, 252);
+        background-color : rgb(236, 236, 252);
+    }
+    
+}
+
+.from-message{
+    text-align : right;
+    justify-content : flex-end;
+
+    .message-content{
+        border-color : rgb(68, 112, 255);
+        color : white;
+        background-color : rgb(68, 112, 255);
+    }
+}
