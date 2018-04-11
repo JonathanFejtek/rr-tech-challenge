@@ -14,8 +14,7 @@
 A. Alternatively, you could open two terminal sessions and `gulp` in the root folder in each session.
 This will automatically open two browser tabs serving the app on different servers.
 
-B. Or you could `gulp` in the root project folder and open two browser windows at address
-`localhost:3000`. I've found this to be a risky/unreliable way of testing multiple React sessions locally. I've just run into weird problems.
+B. Or you could open multiple sessions of the index.html file in the root folder.
 
 C. Or vist the app live @ `jfejtek.com/rr-challenge`.
 
